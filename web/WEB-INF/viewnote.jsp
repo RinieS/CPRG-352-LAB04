@@ -14,14 +14,14 @@
     </head>
     <body>
         <h1>Simple Note Keeper</h1>
-        
+        <form  method="post" action="note">
         <h2>View Note</h2>
-        <h4>Title: </h4>
+        <label> <h4>Title: </h4></label>
         <p >${mynote.title}</p>
-        <h4>Contents: </h4><br>
+        <label><h4>Contents: </h4></label>
         <p>${mynote.contents}</p>
         
         <a href="note?edit=true" >Edit</a>
-     
+        </form>
     </body>
 </html>

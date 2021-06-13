@@ -6,9 +6,12 @@
 package servlets;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +30,7 @@ public class NoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-              String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+      String path = getServletContext().getRealPath("/WEB-INF/note.txt");
       String title="";
       String contents="";
       
@@ -42,18 +45,16 @@ public class NoteServlet extends HttpServlet {
            }
       Note mynote = new Note(title,contents);
       request.setAttribute("mynote", mynote);
-          getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request,response);
-            //return;// Very important! Stop the code call.
+          
         
-        String edit;
-        edit = request.getParameter("edit");
-        if (edit != null || edit.equals("true")) {
+        String edit = request.getParameter("edit");
+        if (edit != null && edit.equals("true")) {
            
-           getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request,response);
+           getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request,response);
         }
   
-          
-          
+        else  {getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
+        }
     
     }
     
@@ -68,8 +69,8 @@ public class NoteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-
-    
+    String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
      
 }
     }
