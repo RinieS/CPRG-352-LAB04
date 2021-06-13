@@ -9,8 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,17 +44,27 @@ public class NoteServlet extends HttpServlet {
       request.setAttribute("mynote", mynote);
           getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request,response);
             //return;// Very important! Stop the code call.
-            
-         String edit;
-       edit = request.getParameter("edit");
-    if (edit != null ){
-       getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request, response);
-
-    }
-
+        
+        String edit;
+        edit = request.getParameter("edit");
+        if (edit != null || edit.equals("true")) {
+           
+           getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request,response);
+        }
+  
+          
+          
     
     }
     
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
