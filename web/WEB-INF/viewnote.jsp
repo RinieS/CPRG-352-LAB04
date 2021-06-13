@@ -20,6 +20,6 @@
         <h4>Contents: </h4><br>
         <p>${mynote.contents}</p>
         
-        <a href="note?edit">Edit</a>
+        <a href="note?edit" name="edit">Edit</a>
     </body>
 </html>

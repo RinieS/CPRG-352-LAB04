@@ -10,8 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,20 +44,30 @@ public class NoteServlet extends HttpServlet {
       Note mynote = new Note(title,contents);
       request.setAttribute("mynote", mynote);
           getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request,response);
-            return;// Very important! Stop the code call.
-       
+            //return;// Very important! Stop the code call.
+            
+         String edit;
+       edit = request.getParameter("edit");
+    if (edit != null ){
+       getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request, response);
+
     }
 
+    
+    }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
 
-      
+    
+     
+}
+    }
        
       
-        }
-    }
+        
+    
 
    
 
